@@ -5,6 +5,7 @@ import RecipeList from './pages/RecipeList'
 import RecipeDetail from './pages/RecipeDetail'
 import Inventory from './pages/Inventory'
 import DailyPlanner from './pages/DailyPlanner'
+import Watchlist from './pages/Watchlist'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/recipes/:id" element={<RecipeDetail />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/planner" element={<DailyPlanner />} />
+        <Route path="/watchlist" element={<Watchlist />} />
         <Route path="*" element={<div className="p-10 text-center">Page Not Found. <a href="/" className="text-primary underline">Go Home</a></div>} />
       </Routes>
     </BrowserRouter>

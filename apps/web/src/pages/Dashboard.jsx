@@ -125,7 +125,10 @@ function Dashboard() {
                     </button>
 
                     {/* Film Card */}
-                    <button className="group relative flex flex-col items-center justify-center p-8 h-48 sm:h-56 rounded-2xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer">
+                    <button
+                        onClick={() => navigate('/watchlist')}
+                        className="group relative flex flex-col items-center justify-center p-8 h-48 sm:h-56 rounded-2xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer"
+                    >
                         <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
                         <div className="mb-4 p-4 rounded-full bg-background-light dark:bg-background-dark group-hover:bg-white dark:group-hover:bg-[#332a2a] transition-colors duration-300">
                             <span className="material-symbols-outlined text-[40px] text-text-main dark:text-white group-hover:text-primary transition-colors duration-300">movie</span>
