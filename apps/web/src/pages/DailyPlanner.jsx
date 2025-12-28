@@ -1,7 +1,17 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddTaskModal from '../components/AddTaskModal';
 
 function DailyPlanner() {
     const navigate = useNavigate();
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [currentDate, setCurrentDate] = useState('');
+
+    useEffect(() => {
+        const date = new Date();
+        const options = { weekday: 'long', day: 'numeric', month: 'short' };
+        setCurrentDate(date.toLocaleDateString('en-GB', options));
+    }, []);
 
     return (
         <div className="bg-background-light dark:bg-background-dark text-[#1b0d0f] font-display min-h-screen flex flex-col overflow-x-hidden transition-colors duration-200">
@@ -48,7 +58,7 @@ function DailyPlanner() {
                 <div className="layout-content-container w-full max-w-[800px] flex flex-col gap-6">
                     {/* Date Headline */}
                     <section className="text-center pb-2 pt-4">
-                        <h2 className="text-[#1b0d0f] dark:text-white tracking-tight text-[28px] md:text-3xl font-bold leading-tight px-4">Tuesday, 24 Oct</h2>
+                        <h2 className="text-[#1b0d0f] dark:text-white tracking-tight text-[28px] md:text-3xl font-bold leading-tight px-4">{currentDate || 'Loading...'}</h2>
                         <p className="text-[#9a4c52] dark:text-white/60 text-sm mt-1">Let's make today productive!</p>
                     </section>
                     {/* Progress Bar */}
@@ -71,72 +81,52 @@ function DailyPlanner() {
                         {/* Task Item 1 */}
                         <TaskItem
                             title="Restock Foundation & Mascara"
-                            category="Makeup"
-                            categoryIcon="brush"
                             priority="Urgent"
                             priorityColor="bg-[#ec1325]"
-                            tagBg="bg-pink-100 dark:bg-pink-900/30"
-                            tagText="text-pink-800 dark:text-pink-300"
                             priorityText="text-[#ec1325]"
                         />
                         {/* Task Item 2 */}
                         <TaskItem
                             title="Cook Lemon Garlic Chicken"
-                            category="Recipe"
-                            categoryIcon="restaurant_menu"
                             priority="Medium"
                             priorityColor="bg-yellow-500"
-                            tagBg="bg-orange-100 dark:bg-orange-900/30"
-                            tagText="text-orange-800 dark:text-orange-300"
                             priorityText="text-yellow-600 dark:text-yellow-500"
                         />
                         {/* Task Item 3 */}
                         <TaskItem
                             title="Watch new episode of Series"
-                            category="Entertainment"
-                            categoryIcon="movie"
                             priority="Santai"
                             priorityColor="bg-green-500"
-                            tagBg="bg-purple-100 dark:bg-purple-900/30"
-                            tagText="text-purple-800 dark:text-purple-300"
                             priorityText="text-green-600 dark:text-green-500"
                         />
-                        {/* Task Item 4 (Completed) */}
-                        <div className="group flex items-center gap-4 bg-[#fcf8f8] dark:bg-white/5 border border-transparent rounded-xl p-4 opacity-75 transition-all duration-200">
-                            <div className="flex items-start gap-4 w-full">
-                                <div className="flex pt-1">
-                                    <input defaultChecked className="size-6 rounded-full border-2 border-[#e7cfd1] dark:border-white/30 bg-primary text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 transition-colors cursor-pointer" type="checkbox" />
-                                </div>
-                                <div className="flex flex-col flex-1 gap-1">
-                                    <p className="text-[#9a4c52] dark:text-white/50 text-base font-medium leading-normal line-clamp-1 line-through decoration-2 decoration-primary/40">Morning Yoga Session</p>
-                                    <div className="flex items-center gap-2 flex-wrap grayscale opacity-70">
-                                        <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 dark:bg-blue-900/30 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:text-blue-300">
-                                            <span className="material-symbols-outlined text-[14px]">self_improvement</span> Wellness
-                                        </span>
-                                        <span className="inline-flex items-center gap-1 text-xs font-medium text-yellow-600 dark:text-yellow-500">
-                                            <span className="size-2 rounded-full bg-yellow-500"></span> Medium
-                                        </span>
-                                    </div>
-                                </div>
-                                <button className="shrink-0 text-[#9a4c52] dark:text-white/40 hover:text-primary transition-colors p-2 rounded-full hover:bg-[#fcf8f8] dark:hover:bg-white/10 cursor-pointer">
-                                    <span className="material-symbols-outlined text-xl">edit</span>
-                                </button>
-                            </div>
-                        </div>
+                        {/* Task Item 4 */}
+                        <TaskItem
+                            title="Restock Foundation & Mascara"
+                            priority="Urgent"
+                            priorityColor="bg-[#ec1325]"
+                            priorityText="text-[#ec1325]"
+                        />
                     </section>
                 </div>
             </main>
-            {/* Floating Action Button */}
-            <div className="fixed bottom-8 right-8 z-50">
-                <button className="group flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg hover:shadow-xl hover:scale-105 hover:bg-red-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/30 cursor-pointer">
-                    <span className="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-300">add</span>
+            {/* Floating Action Button (FAB) */}
+            <div className="fixed bottom-8 right-8 z-30">
+                <button
+                    onClick={() => setShowAddModal(true)}
+                    aria-label="Add new task"
+                    className="flex items-center justify-center w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:shadow-xl hover:scale-105 hover:bg-primary-dark active:scale-95 transition-all duration-200 cursor-pointer"
+                >
+                    <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>add</span>
                 </button>
             </div>
+
+            {/* Add Task Modal */}
+            <AddTaskModal isOpen={showAddModal} onClose={() => setShowAddModal(false)} />
         </div>
     );
 }
 
-function TaskItem({ title, category, categoryIcon, priority, priorityColor, tagBg, tagText, priorityText }) {
+function TaskItem({ title, priority, priorityColor, priorityText }) {
     return (
         <div className="group flex items-center gap-4 bg-white dark:bg-white/5 border border-transparent hover:border-primary/20 shadow-sm hover:shadow-md rounded-xl p-4 transition-all duration-200 cursor-pointer">
             <div className="flex items-start gap-4 w-full">
@@ -145,12 +135,11 @@ function TaskItem({ title, category, categoryIcon, priority, priorityColor, tagB
                 </div>
                 <div className="flex flex-col flex-1 gap-1">
                     <p className="text-[#1b0d0f] dark:text-white text-base font-medium leading-normal line-clamp-1 group-hover:text-primary transition-colors">{title}</p>
-                    <div className="flex items-center gap-2 flex-wrap">
-                        <span className={`inline-flex items-center gap-1 rounded-full ${tagBg} px-2.5 py-0.5 text-xs font-medium ${tagText}`}>
-                            <span className="material-symbols-outlined text-[14px]">{categoryIcon}</span> {category}
-                        </span>
-                        <span className={`inline-flex items-center gap-1 text-xs font-medium ${priorityText}`}>
-                            <span className={`size-2 rounded-full ${priorityColor}`}></span> {priority}
+                    {/* Priority Badge - positioned below the title */}
+                    <div className="flex items-center gap-2 mt-1">
+                        <span className={`inline-flex items-center gap-1.5 text-xs font-medium ${priorityText}`}>
+                            <span className={`size-2 rounded-full ${priorityColor}`}></span>
+                            {priority}
                         </span>
                     </div>
                 </div>

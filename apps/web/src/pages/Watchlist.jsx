@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddMovieModal from '../components/AddMovieModal';
 
 function Watchlist() {
     const navigate = useNavigate();
+    const [showAddModal, setShowAddModal] = useState(false);
 
     return (
         <div className="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden relative transition-colors duration-200">
@@ -53,32 +56,32 @@ function Watchlist() {
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 pb-24">
                         <MovieCard
                             title="Dune: Part Two"
-                            genre="Sci-Fi • 2024"
+                            genre="Sci-Fi"
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ1OIGdsLJmyx-M8TKWSE31nJbwose6pNscaopr6-TpnOW-O9_zmQCkhP54ZAwZ2m-t7NqYSgKb2Xq4j7OGga5-GuSRF54yt5L8djmY8faRI-PaQmmNbtCcSlw8poEda4EGRZywj3v6XUw83fgXvbvSYHIfU0WBZib6rg0c44QuqeWKOm-JMMvQrRYJFod9CaAI2mttrpryIniarpbgXdXr3wwo_2ndQ9ewTwnWp5ti0ecufTL4c6SuvnH-8IPWo2qHyMUqC7cvic1"
                         />
                         <MovieCard
                             title="Oppenheimer"
-                            genre="Drama/History • 2023"
+                            genre="Drama/History"
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuAUl28Mb0wtXWFgjkd0cyp7MeRg9_7-ermduxDwY-Sv1FuInvHMkB6uh8kPFVKA7PreSEPTMnsWeR0vaE665Bn7McpLAuKd9PDCI5BUHdGzH20iIATaUtj9s-MHXyRcxP934zIp7KTrqgsQUUCQYUBCNXbyF37SjA1uSiTkPwgJDbw_Nq-ECfEBRSEWIhCW_lN7LtFw8bxuba8qpxoSDjeLtRGZa75MoOi0nz9YKZw2MxM4zKJy6Y2tXnSCPQtJgU776wPrwfB5U3u4"
                         />
                         <MovieCard
                             title="Barbie"
-                            genre="Comedy • 2023"
+                            genre="Comedy"
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuC3InW6P7CVUkzgrjXIWu7lQOabHo6L8e0R8-MDL62aO3S6uciVFMAxogq0uy-kKuB3Z0Ehzacw8fzOGmbZYpmDnwFz1M_SjALjT5kffNuleDIcifnl1rlDPuq9CRFAs80C15a2Q7-Hz_bqgSuKXzKI4ftt8YcPOfb-1ncFhgPyURoUmFUzbfVXm7wPP4CrdVIWZ2uoBUaHxLPLo8-V4LPS5zFf-ubNv8ySfMWACmYO8vDXD4OIqFUcJHxSTIijCRdzGvCe-ZyHXnw_"
                         />
                         <MovieCard
                             title="Poor Things"
-                            genre="Sci-Fi/Romance • 2023"
+                            genre="Sci-Fi/Romance"
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuA-BO6s7-B3y2jUEh5QJ8xrP_hvzuxZYtEx7kTfwcNrrIUEbN6s1mIbVvdaH5sEORIYtVCXA4z4BWadWi3E3umSa8ihqJl6NxB9hwg5-lPMQchGUON9NbQ56RzPjB56_TMfRIDODXX1Xw1micWoG9tFqVVVx_ONMHgGIGsflgsCdEL8YeXNPwlNseivpwYlNF4i6hILVlGTKSvWLNSa0fsscxjy4Rtp4-SSExsj31bkFcsmjCiQds2H3OtOp80V2LyWZ9DFfDPfxRt1"
                         />
                         <MovieCard
                             title="Interstellar"
-                            genre="Sci-Fi/Adventure • 2014"
+                            genre="Sci-Fi/Adventure"
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuBtfthnIKeAphX6nuhEgo0ClKUc4RrkdXevZ4BOjaCiDTiqHQZ5u6t7R88jHZwwbVYLCy5vt7ZG90egmnwyapSYn5ptSTdci2behLjgTrgDrg2Rov72uzvI05fNRao6G5UsXTPAQyxr5wxNCyT2BVcZXrkavu4tjddFnjXdx0pHXqnP-LIs783rPIAqyDrL9QankYWX_s4YuAIFnr3SQAWgdf2K1Gevj-Bd6c8LSsZI_q6NapCJHS7NbK1yu6PaDzmSN47sZldlwA2W"
                         />
                         <MovieCard
                             title="Grand Budapest Hotel"
-                            genre="Comedy/Drama • 2014"
+                            genre="Comedy/Drama"
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuAohq6pu1aKYfL2ATS7QtBpsRjJG6UD84jZs25lQm9HWp_VawOzHn-0BwkyLU_wQbxtGVEqPd_8U8sraafp2gUsNT6NMf0_Y4iei3Zt2-kK_LttWI4GVpjalFndl5nXIAxTqkWr1fAz3I7QlJmkCFxj3M-xwvDjFo8z7sxqOObZd1mEH0PYdoQErF-gkRzEsYvQIntDzLb3ITUdl4ZqZ5OCmVq9QV_QoNtQzFemjHc8qaDpWwj7zMvPeXy3KMdtWlWl_BDHCQxTZP6M"
                         />
                     </div>
@@ -87,10 +90,16 @@ function Watchlist() {
 
             {/* Floating Action Button */}
             <div className="absolute bottom-8 right-8 lg:right-[calc(50%-480px+2rem)] z-50">
-                <button className="flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 hover:scale-105 transition-transform cursor-pointer">
+                <button
+                    onClick={() => setShowAddModal(true)}
+                    className="flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 hover:scale-105 transition-transform cursor-pointer"
+                >
                     <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>add</span>
                 </button>
             </div>
+
+            {/* Add Movie Modal */}
+            <AddMovieModal isOpen={showAddModal} onClose={() => setShowAddModal(false)} />
         </div>
     );
 }

@@ -1,7 +1,57 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import avatarImage from '../assets/pexels-photo-2531237.webp';
 
 function Dashboard() {
     const navigate = useNavigate();
+    const [currentDate, setCurrentDate] = useState('');
+    const [weather, setWeather] = useState({ temp: '--', condition: 'Loading...' });
+    const location = 'Yogyakarta';
+    const avatarUrl = avatarImage;
+
+    useEffect(() => {
+        // 1. Set Date
+        const date = new Date();
+        const options = { weekday: 'short', day: 'numeric', month: 'short' };
+        setCurrentDate(date.toLocaleDateString('en-GB', options));
+
+        // 2. Fetch Weather for Yogyakarta
+        const fetchWeather = async () => {
+            const latitude = -7.7956;
+            const longitude = 110.3695;
+
+            try {
+                const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+                const weatherData = await weatherRes.json();
+
+                if (weatherData.current_weather) {
+                    const temp = Math.round(weatherData.current_weather.temperature);
+                    const code = weatherData.current_weather.weathercode;
+                    const condition = getWeatherCondition(code);
+                    setWeather({ temp: `${temp}°C`, condition });
+                }
+            } catch (error) {
+                console.error("Error fetching weather:", error);
+                setWeather({ temp: '--', condition: 'Error' });
+            }
+        };
+
+        fetchWeather();
+    }, []);
+
+    // Helper to map WMO codes to text
+    const getWeatherCondition = (code) => {
+        if (code === 0) return 'Clear';
+        if (code >= 1 && code <= 3) return 'Cloudy';
+        if (code >= 45 && code <= 48) return 'Foggy';
+        if (code >= 51 && code <= 55) return 'Drizzle';
+        if (code >= 61 && code <= 67) return 'Rain';
+        if (code >= 71 && code <= 77) return 'Snow';
+        if (code >= 80 && code <= 82) return 'Showers';
+        if (code >= 95 && code <= 99) return 'Thunderstorm';
+        return 'Unknown';
+    };
+
     return (
         <div className="bg-background-light dark:bg-background-dark text-text-main dark:text-white min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300 font-display">
             {/* Header */}
@@ -43,7 +93,7 @@ function Dashboard() {
                         <div className="absolute -inset-1 bg-gradient-to-r from-primary to-pink-200 rounded-full blur opacity-40 group-hover:opacity-75 transition duration-200"></div>
                         <div
                             className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-cover bg-center border-4 border-white dark:border-surface-dark shadow-lg"
-                            style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXmMGHpwF1qv8EOv58bjHmzpFWid89rbgiKdYtUPsnuE0NqiqnVaZg7Ubovoav_WW2XjlEMMejexiaWsLhpTc7zZ8Xcpf4OCkp_a417Yeu_IODhH_V2cIdzPkZJ5Dzr6nVXeugqMuS5p40b_-FknHu8_uerReGF4Fvun_Vzo0COheFA8CAZ0_u9Cn5gZVMHjhuXZbvSYA-l6difWTAm3njtsi6SpnSh-ynjsU47w7FgvCVALYhvJHLJENFq1-ZT4K3ZKT8lhnzdQkx')" }}
+                            style={{ backgroundImage: `url('${avatarUrl}')` }}
                         ></div>
                         <div className="absolute bottom-2 right-2 bg-green-400 size-4 rounded-full border-2 border-white dark:border-surface-dark"></div>
                     </div>
@@ -51,10 +101,10 @@ function Dashboard() {
                     {/* Greeting */}
                     <div className="mt-6 text-center space-y-2">
                         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-main dark:text-white">
-                            Halo, Sarah!
+                            Hi!
                         </h1>
                         <p className="text-lg sm:text-xl text-primary font-medium">
-                            Kamu cantik hari ini.
+                            Hi.
                         </p>
                     </div>
 
@@ -63,12 +113,7 @@ function Dashboard() {
                         {/* Date Chip */}
                         <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/50 transition-colors cursor-default">
                             <span className="material-symbols-outlined text-primary">calendar_today</span>
-                            <span className="text-sm font-semibold">Mon, 24 Oct</span>
-                        </div>
-                        {/* Weather Chip */}
-                        <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/50 transition-colors cursor-default">
-                            <span className="material-symbols-outlined text-primary">cloud</span>
-                            <span className="text-sm font-semibold">24°C Cloudy</span>
+                            <span className="text-sm font-semibold">{currentDate || 'Loading...'}</span>
                         </div>
                         {/* Progress Chip */}
                         <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/50 transition-colors cursor-default">
@@ -78,7 +123,12 @@ function Dashboard() {
                                     <path className="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray="66, 100" strokeWidth="4"></path>
                                 </svg>
                             </div>
-                            <span className="text-sm font-semibold">4/6 Tasks Done</span>
+                            <span className="text-sm font-semibold">{location}</span>
+                        </div>
+                        {/* Weather Chip */}
+                        <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/50 transition-colors cursor-default">
+                            <span className="material-symbols-outlined text-primary">cloud</span>
+                            <span className="text-sm font-semibold">{weather.temp} {weather.condition}</span>
                         </div>
                     </div>
                 </section>

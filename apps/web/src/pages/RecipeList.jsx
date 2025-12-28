@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddRecipeModal from '../components/AddRecipeModal';
 
 function RecipeList() {
     const navigate = useNavigate();
+    const [showAddModal, setShowAddModal] = useState(false);
 
     return (
         <div className="relative min-h-screen flex flex-col w-full overflow-x-hidden bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white antialiased transition-colors duration-200">
@@ -53,7 +56,7 @@ function RecipeList() {
                             All
                         </button>
                         {/* Inactive Chips */}
-                        {['Breakfast', 'Dinner', 'Diet', 'Dessert', 'Snacks'].map((category) => (
+                        {['Breakfast', 'Dinner', 'Diet', 'Dessert'].map((category) => (
                             <button key={category} className="flex-shrink-0 h-9 px-5 rounded-full bg-surface-light dark:bg-surface-dark border border-transparent hover:border-primary/30 text-text-main dark:text-white font-medium text-sm shadow-sm transition-all cursor-pointer">
                                 {category}
                             </button>
@@ -68,7 +71,6 @@ function RecipeList() {
                         title="Creamy Avocado Toast"
                         image="https://lh3.googleusercontent.com/aida-public/AB6AXuCmpH_rtz4JcomIovg90CCJ7yGlM8MRUQBINAITz6WRmNzMhrRIvOJRvZxK6SrT3EkOPVbVIPk0Bzz-4rn-hb83-OqKEBRhkUeiMA_hoWKD9-zYg2LdEfjk9BuifS_wuhw8YWf_3YKtza-3fEkDLzOyJg6Sdp--GxKIv-iXMVnCrqTVB0jFIqvVyLVomlFZPdbufyHitIus2_72K0q1vfzdtIn1LtZgqub0UY2ewxExi2SKFGF40ozNXNhjnD45XMC0LWG8-Tgq2ys5"
                         category="Breakfast"
-                        time="10 min"
                         tagColor="bg-primary/20"
                         tagTextColor="text-[#8b4b4f] dark:text-[#e8b5b9]"
                         isFavorite={false}
@@ -77,7 +79,6 @@ function RecipeList() {
                         title="Lemon Herb Salmon"
                         image="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Hr73McPPCE8wUjDM0PsbmducdWI-Es8bDx0G64dn9_ybesq7JEy3dsaWYSsRpZXlPn4vJAxskSSELgnNCjkTdCaf4Mct8Ak8ZrDLFzRtkbaYPS3Lew-kpoEFixUM3rpvmF9qbK0iUKiA8RJW-heYIRB9Iz85ITP3exQSWGsxlP9fVEYInvSQzifv1ZkRqpl28gjCze2m-XLg3nFI6R72V9rIL642iuogl_fYPg0HHERF-1feb0e-qjwhp2-zb1tid_kmP09Wwd0M"
                         category="Diet"
-                        time="25 min"
                         tagColor="bg-green-100 dark:bg-green-900/30"
                         tagTextColor="text-green-800 dark:text-green-300"
                         isFavorite={true}
@@ -86,7 +87,6 @@ function RecipeList() {
                         title="Berry Smoothie Bowl"
                         image="https://lh3.googleusercontent.com/aida-public/AB6AXuDVG00XyTkNRrYUFESyXl8YmQ42Gm8QVK6OwlhpAHZksYM9_XgfMXB61TT1hhBUsxuORSUPDPLEWj23AkjIuvL_svwpB0DyRKyDKdJa-g_Q0iP5ViRwYWC80M1kd-8kV8LKX9VnMlhy2HJXqO1e-VUl_9OCeOox3W5gaMBjANOEfbx1OULSuyX1W8mxJ555UyN6s9_WC0GHu5Ko_nLYkHY-uSFHehxx9vb7CKRFUMZUXr4yfF-x66u6-VqYr6z_M2y6pUST9xMS1QLt"
                         category="Breakfast"
-                        time="5 min"
                         tagColor="bg-primary/20"
                         tagTextColor="text-[#8b4b4f] dark:text-[#e8b5b9]"
                         isFavorite={false}
@@ -95,7 +95,6 @@ function RecipeList() {
                         title="Chicken Alfredo"
                         image="https://lh3.googleusercontent.com/aida-public/AB6AXuCCMBB-q1Z9iKmnzPY4P0UUiZGClWTzmY9iQtP53PcDZ9JuXH-EUkkZWnHK0MSWSVOBclEonDl9TY7pxW8TMFTeNaNqjcH9IZAxZXs-Uf6gQeEejocntAqND5Wow3cxVT6LOpp8KE_Y2D7tjmxszhLwDsXev0xXqU8BjwXos25xme2tXSmmqUQyqhPLmLplt6Ky90p6Z-NEvmL4NIloFUk__HxQaJMLVX7joDlr4VEpXmun-LEX2NuVF8qYgFscvTYbtldvS9i6NeAu"
                         category="Dinner"
-                        time="40 min"
                         tagColor="bg-orange-100 dark:bg-orange-900/30"
                         tagTextColor="text-orange-800 dark:text-orange-300"
                         isFavorite={false}
@@ -104,7 +103,6 @@ function RecipeList() {
                         title="Chocolate Lava Cake"
                         image="https://lh3.googleusercontent.com/aida-public/AB6AXuAeaoklG_8cGrJ12ATnHNcFNr7GkwSDLh0Lza0zK7Wa0et-1K_ic-DT8O9BKHEc57IB0T3cACvLHQQxIDZZ02alRUGWBbYChAbO3wT2VULbHFw-eJvCxOhci5V6bhgHqpLe_4iHln9zEo6fRret5jyM-2VVS1H8TFIcOZN6dfVqQlHixJTFlJfBwoUCIIFuAJQX91-LGwSxgsnVWIueqpMviU9od6nhiSdhYAp_U6TemV5X5511QeBV_ogNjInyIHsqTWsZOm_ZHwoq"
                         category="Dessert"
-                        time="30 min"
                         tagColor="bg-pink-100 dark:bg-pink-900/30"
                         tagTextColor="text-pink-800 dark:text-pink-300"
                         isFavorite={true}
@@ -113,7 +111,6 @@ function RecipeList() {
                         title="Caesar Salad"
                         image="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUhN1qxtl2xKt5X9Z6aa3N3W6-s6UuCs482awsL8NZ8HeUb-nMzZcqrbXb4f6BqKlAcUA8iHoEmtibLdIpI1g5BAOqkNwzsGkU10cIrG9K8Y7HdRM4qnyn6e3-LP_96vfkgeW2rSh4qJDr8kJFdpSurP6ger9cQ07Xfk8qcnV8uSbO872gOHBjajOsFeFrKkXgBvygsKB_SKexH5szesjMG6jX5HS6bbkICrpT4DSmghuP5vnZPHJE9Xev6aWAaTK0eQLRzMznM_n"
                         category="Diet"
-                        time="15 min"
                         tagColor="bg-green-100 dark:bg-green-900/30"
                         tagTextColor="text-green-800 dark:text-green-300"
                         isFavorite={false}
@@ -123,13 +120,20 @@ function RecipeList() {
 
             {/* Floating Action Button (FAB) */}
             <div className="fixed bottom-8 right-8 z-30">
-                <button aria-label="Add new recipe" className="flex items-center justify-center w-14 h-14 bg-primary text-[#191011] rounded-full shadow-lg hover:shadow-xl hover:scale-105 hover:bg-[#e6aeb2] active:scale-95 transition-all duration-200 cursor-pointer">
+                <button
+                    onClick={() => setShowAddModal(true)}
+                    aria-label="Add new recipe"
+                    className="flex items-center justify-center w-14 h-14 bg-primary text-[#191011] rounded-full shadow-lg hover:shadow-xl hover:scale-105 hover:bg-[#e6aeb2] active:scale-95 transition-all duration-200 cursor-pointer"
+                >
                     <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>add</span>
                 </button>
             </div>
 
             {/* Overlay Gradient */}
             <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent opacity-50 z-10"></div>
+
+            {/* Add Recipe Modal */}
+            <AddRecipeModal isOpen={showAddModal} onClose={() => setShowAddModal(false)} />
         </div>
     );
 }
