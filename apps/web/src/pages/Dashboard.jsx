@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import avatarImage from '../assets/pexels-photo-2531237.webp';
+import avatarImage from '../assets/Screenshot 2025-12-26 131543.png';
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -101,10 +101,10 @@ function Dashboard() {
                     {/* Greeting */}
                     <div className="mt-6 text-center space-y-2">
                         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-main dark:text-white">
-                            Hi!
+                            Hi, Regina!
                         </h1>
                         <p className="text-lg sm:text-xl text-primary font-medium">
-                            Hi.
+                            Hi, Regina!
                         </p>
                     </div>
 
