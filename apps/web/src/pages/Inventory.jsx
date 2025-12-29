@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddItemModal from '../components/AddItemModal';
 
 function Inventory() {
     const navigate = useNavigate();
+    const [showAddModal, setShowAddModal] = useState(false);
 
     return (
         <div className="bg-background-light dark:bg-background-dark text-[#1b0d0f] dark:text-[#ececec] font-display min-h-screen flex flex-col overflow-x-hidden transition-colors duration-200">
@@ -36,13 +39,6 @@ function Inventory() {
                                 </a>
                             </div>
                         </nav>
-                        <div className="flex justify-between items-center mb-6 px-1">
-                            <p className="text-sm text-[#9a4c52] dark:text-[#d1a3a6] font-medium">12 Items Found</p>
-                            <button className="flex items-center gap-1 text-sm text-primary font-medium hover:underline cursor-pointer">
-                                <span>Sort by Expiry</span>
-                                <span className="material-symbols-outlined text-[16px]">sort</span>
-                            </button>
-                        </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 pb-20">
                             <ProductCard
                                 title="Ruby Woo"
@@ -60,7 +56,7 @@ function Inventory() {
                                 title="Pro Filt'r"
                                 brand="Fenty Beauty"
                                 image="https://lh3.googleusercontent.com/aida-public/AB6AXuD0z1NSo9CAcxBHkPch-HV9D7AAbRbC2cehXcKaPQx6T74Z2BJnGAV_qcSipWHm97EULLsguCHUuPyVG_L6oGsiFFLemFDNZrd5T0djqxhMbId7VvF_p_ivJ-mbIT70iZczPmbYiJCX4COfhLMBe4Y2sp2UNCCksZmb6GLhIOSw6Dy2KEhuXXHrL4XNlTlf_71oAvCnOTdK9j5Ts9jgu3WbuDLFnvYAdT2B7qGuw2fCcUGYLmXj4yEjE8Y65SszrBFFKVWZ3mgdjt5i"
-                                icon="delete"
+                                icon="edit"
                                 grayscale
                             />
                             <ProductCard
@@ -84,11 +80,20 @@ function Inventory() {
                         </div>
                     </div>
                 </main>
-                <div className="fixed bottom-6 right-6 md:right-10 md:bottom-10 z-50">
-                    <button className="group flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/40 hover:scale-110 hover:shadow-primary/60 transition-all duration-300 cursor-pointer">
-                        <span className="material-symbols-outlined text-[28px] transition-transform group-hover:rotate-90">add</span>
+
+                {/* Floating Action Button */}
+                <div className="fixed bottom-8 right-8 z-30">
+                    <button
+                        onClick={() => setShowAddModal(true)}
+                        aria-label="Add new recipe"
+                        className="flex items-center justify-center w-14 h-14 bg-primary text-[#191011] rounded-full shadow-lg hover:shadow-xl hover:scale-105 hover:bg-[#e6aeb2] active:scale-95 transition-all duration-200 cursor-pointer"
+                    >
+                        <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>add</span>
                     </button>
                 </div>
+
+                {/* Add Item Modal */}
+                <AddItemModal isOpen={showAddModal} onClose={() => setShowAddModal(false)} />
             </div>
         </div>
     );

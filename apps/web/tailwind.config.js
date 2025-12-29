@@ -8,8 +8,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                "primary": "#e8b5b9",
+                "primary": "#ec1325",
                 "primary-dark": "#d69fa3",
+                "recipe-red": "#ec1325", // Adding specific color for recipe detail if needed elsewhere
                 "background-light": "#f8f6f6",
                 "background-dark": "#1e1414",
                 "surface-light": "#ffffff",
@@ -18,8 +19,8 @@ export default {
                 "text-sub": "#8b5b5f",
             },
             fontFamily: {
-                "display": ["Inter", "sans-serif"],
-                "sans": ["Inter", "sans-serif"],
+                "display": ["Work Sans", "Inter", "sans-serif"],
+                "sans": ["Work Sans", "Inter", "sans-serif"],
             },
             borderRadius: {
                 "DEFAULT": "0.25rem",
