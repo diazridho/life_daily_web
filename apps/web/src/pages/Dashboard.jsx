@@ -101,7 +101,7 @@ function Dashboard() {
                     {/* Greeting */}
                     <div className="mt-6 text-center space-y-2">
                         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-main dark:text-white">
-                            Hi, Regina!
+                            DAIAIIAIAIAIZZZ!
                         </h1>
                         <p className="text-lg sm:text-xl text-primary font-medium">
                             Hi, Regina!
