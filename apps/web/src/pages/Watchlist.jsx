@@ -89,7 +89,7 @@ function Watchlist() {
             </main>
 
             {/* Floating Action Button */}
-            <div className="absolute bottom-8 right-8 lg:right-[calc(50%-480px+2rem)] z-50">
+            <div className="fixed bottom-8 right-8 z-50">
                 <button
                     onClick={() => setShowAddModal(true)}
                     className="flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 hover:scale-105 transition-transform cursor-pointer"

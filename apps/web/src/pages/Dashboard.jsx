@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import avatarImage from '../assets/Screenshot 2025-12-26 131543.png';
+import avatarImage from '../assets/pexels-photo-2531237.webp';
+import EditProfileModal from '../components/EditProfileModal';
 
 function Dashboard() {
     const navigate = useNavigate();
+    const [showProfileModal, setShowProfileModal] = useState(false);
     const [currentDate, setCurrentDate] = useState('');
     const [weather, setWeather] = useState({ temp: '--', condition: 'Loading...' });
     const location = 'Yogyakarta';
@@ -77,12 +79,13 @@ function Dashboard() {
                             <span className="material-symbols-outlined text-text-main dark:text-white !text-[20px]">notifications</span>
                             <span className="absolute top-2 right-2 size-2 bg-red-400 rounded-full border border-white dark:border-surface-dark"></span>
                         </button>
-                        <button className="flex items-center justify-center size-10 rounded-lg bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-800 hover:bg-primary/10 transition-colors shadow-sm">
-                            <span className="material-symbols-outlined text-text-main dark:text-white !text-[20px]">settings</span>
-                        </button>
+                        {/* Settings button moved to profile image */}
                     </div>
                 </div>
             </header>
+
+            {/* Edit Profile Modal */}
+            <EditProfileModal isOpen={showProfileModal} onClose={() => setShowProfileModal(false)} />
 
             {/* Main Content */}
             <main className="flex-1 w-full max-w-[960px] mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col gap-10">
@@ -95,7 +98,13 @@ function Dashboard() {
                             className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-cover bg-center border-4 border-white dark:border-surface-dark shadow-lg"
                             style={{ backgroundImage: `url('${avatarUrl}')` }}
                         ></div>
-                        <div className="absolute bottom-2 right-2 bg-green-400 size-4 rounded-full border-2 border-white dark:border-surface-dark"></div>
+                        <div className="absolute bottom-2 right-2 bg-green-400 size-4 rounded-full border-2 border-white dark:border-surface-dark hidden"></div>
+                        <button
+                            onClick={() => setShowProfileModal(true)}
+                            className="absolute -bottom-2 -right-2 p-2.5 rounded-full bg-white dark:bg-surface-dark text-text-main dark:text-white shadow-lg border-4 border-background-light dark:border-background-dark hover:text-primary transition-all hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center z-10"
+                        >
+                            <span className="material-symbols-outlined !text-[20px]">settings</span>
+                        </button>
                     </div>
 
                     {/* Greeting */}
@@ -104,7 +113,7 @@ function Dashboard() {
                             DAIAIIAIAIAIZZZ!
                         </h1>
                         <p className="text-lg sm:text-xl text-primary font-medium">
-                            Hi, Regina!
+                            Hii!
                         </p>
                     </div>
 

@@ -1,6 +1,9 @@
 {
     "name": "daily-lifestyle-monorepo",
     "private": true,
+    "scripts": {
+        "dev": "npm run dev -w apps/web"
+    },
     "workspaces": [
         "apps/*"
     ]

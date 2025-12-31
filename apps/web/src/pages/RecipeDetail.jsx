@@ -19,12 +19,6 @@ function RecipeDetail() {
                                     </div>
                                     <h2 className="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">My Daily Lifestyle</h2>
                                 </div>
-                                <div className="hidden md:flex items-center gap-9">
-                                    <a href="#" className="text-[#1b0d0f] dark:text-[#e0dada] text-sm font-medium leading-normal hover:text-primary transition-colors">Tasks</a>
-                                    <a onClick={() => navigate('/recipes')} className="text-primary text-sm font-bold leading-normal cursor-pointer">Recipes</a>
-                                    <a href="#" className="text-[#1b0d0f] dark:text-[#e0dada] text-sm font-medium leading-normal hover:text-primary transition-colors">Makeup</a>
-                                    <a href="#" className="text-[#1b0d0f] dark:text-[#e0dada] text-sm font-medium leading-normal hover:text-primary transition-colors">Entertainment</a>
-                                </div>
                             </div>
                             <div className="flex flex-1 justify-end gap-4 sm:gap-8 items-center">
                                 <label className="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
