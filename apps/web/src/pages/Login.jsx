@@ -104,12 +104,12 @@ function Login() {
                         <div className="text-center mt-2">
                             <p className="text-sm text-text-sub dark:text-gray-400">
                                 Don't have an account?{' '}
-                                <a
+                                <Link
                                     className="font-bold text-text-main dark:text-white hover:text-primary underline decoration-primary/50 underline-offset-4 transition-colors"
-                                    href="#"
+                                    to="/signup"
                                 >
                                     Sign Up
-                                </a>
+                                </Link>
                             </p>
                         </div>
                     </form>
