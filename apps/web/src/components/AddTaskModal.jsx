@@ -61,9 +61,9 @@ function AddTaskModal({ isOpen, onClose }) {
 
 function PriorityRadio({ label, value, color }) {
     const colorClasses = {
-        red: "bg-red-500 hover:border-red-500/50 has-[:checked]:border-red-500 has-[:checked]:bg-red-50 dark:has-[:checked]:bg-red-900/10 has-[:checked]:ring-red-500",
-        yellow: "bg-yellow-500 hover:border-yellow-500/50 has-[:checked]:border-yellow-500 has-[:checked]:bg-yellow-50 dark:has-[:checked]:bg-yellow-900/10 has-[:checked]:ring-yellow-500",
-        green: "bg-green-500 hover:border-green-500/50 has-[:checked]:border-green-500 has-[:checked]:bg-green-50 dark:has-[:checked]:bg-green-900/10 has-[:checked]:ring-green-500"
+        red: "hover:border-red-500/50 has-[:checked]:border-red-500 has-[:checked]:bg-red-50 dark:has-[:checked]:bg-red-900/10 has-[:checked]:ring-red-500",
+        yellow: "hover:border-yellow-500/50 has-[:checked]:border-yellow-500 has-[:checked]:bg-yellow-50 dark:has-[:checked]:bg-yellow-900/10 has-[:checked]:ring-yellow-500",
+        green: "hover:border-green-500/50 has-[:checked]:border-green-500 has-[:checked]:bg-green-50 dark:has-[:checked]:bg-green-900/10 has-[:checked]:ring-green-500"
     };
 
     return (

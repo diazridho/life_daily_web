@@ -80,11 +80,11 @@ function RecipeDetail() {
                         <div className="tabs-header flex border-b border-gray-200 dark:border-gray-700 mb-8 sticky top-0 bg-background-light dark:bg-background-dark z-10 pt-2 transition-colors duration-300">
                             <label onClick={() => setActiveTab('ingredients')} className={`cursor-pointer py-3 px-6 text-base font-semibold border-b-2 transition-colors flex items-center gap-2 ${activeTab === 'ingredients' ? 'text-[#ec1325] border-[#ec1325]' : 'text-gray-500 dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200'}`} htmlFor="tab-ingredients">
                                 <span className="material-symbols-outlined text-xl">grocery</span>
-                                Bahan-bahan
+                                Ingredients
                             </label>
                             <label onClick={() => setActiveTab('steps')} className={`cursor-pointer py-3 px-6 text-base font-semibold border-b-2 transition-colors flex items-center gap-2 ${activeTab === 'steps' ? 'text-[#ec1325] border-[#ec1325]' : 'text-gray-500 dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200'}`} htmlFor="tab-steps">
                                 <span className="material-symbols-outlined text-xl">cooking</span>
-                                Langkah Memasak
+                                Steps
                             </label>
                         </div>
                         <div className="content-container min-h-[400px]">
@@ -92,7 +92,7 @@ function RecipeDetail() {
                                 <div className="tab-content animate-fade-in" id="content-ingredients">
                                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                                         <div className="lg:col-span-2 space-y-4">
-                                            <h3 className="text-xl font-bold mb-4 dark:text-white">Daftar Bahan</h3>
+                                            <h3 className="text-xl font-bold mb-4 dark:text-white">Ingredients List</h3>
                                             <div className="bg-white dark:bg-[#2a1a1c] rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
                                                 <ul className="space-y-4">
                                                     {[
@@ -123,7 +123,7 @@ function RecipeDetail() {
                                                 <div className="flex flex-col h-full">
                                                     <h4 className="font-bold text-md mb-3 dark:text-white flex items-center gap-2">
                                                         <span className="material-symbols-outlined text-primary text-xl">sticky_note_2</span>
-                                                        Catatan
+                                                        Notes
                                                     </h4>
                                                     <textarea className="w-full p-3 bg-gray-50 dark:bg-[#1b0d0f] rounded-lg border-none focus:ring-2 focus:ring-primary/50 text-sm resize-none" placeholder="Add personal notes here (e.g. less salt)..." rows="6"></textarea>
                                                 </div>

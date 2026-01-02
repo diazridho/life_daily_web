@@ -47,7 +47,7 @@ function Watchlist() {
                                 <p className="text-primary text-sm font-bold leading-normal tracking-[0.015em]">Watchlist</p>
                             </button>
                             <button className="flex flex-col items-center justify-center border-b-[3px] border-transparent pb-3 px-2 text-gray-500 dark:text-[#92a4c9] hover:text-[#111418] dark:hover:text-white transition-colors cursor-pointer">
-                                <p className="text-sm font-bold leading-normal tracking-[0.015em]">Sudah Tonton</p>
+                                <p className="text-sm font-bold leading-normal tracking-[0.015em]">Watched</p>
                             </button>
                         </div>
                     </div>
