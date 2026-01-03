@@ -114,7 +114,14 @@ function ProductCard({ title, brand, image, icon, grayscale }) {
                         <h3 className="text-[#1b0d0f] dark:text-[#ececec] text-lg font-bold leading-tight">{title}</h3>
                         <p className="text-[#9a4c52] dark:text-[#d1a3a6] text-sm">{brand}</p>
                     </div>
-                    <span className="material-symbols-outlined text-[#9a4c52] dark:text-[#d1a3a6] group-hover:text-primary transition-colors">{icon}</span>
+                    <div className="flex items-center gap-3">
+                        <button className="text-[#9a4c52] dark:text-[#d1a3a6] hover:text-red-500 transition-colors" title="Delete">
+                            <span className="material-symbols-outlined">delete</span>
+                        </button>
+                        <button className="text-[#9a4c52] dark:text-[#d1a3a6] hover:text-primary transition-colors" title="Edit">
+                            <span className="material-symbols-outlined">{icon}</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

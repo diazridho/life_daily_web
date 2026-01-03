@@ -178,11 +178,11 @@ function RecipeDetail() {
                                             <div className="space-y-4">
                                                 <div>
                                                     <label className="sr-only">Step Title</label>
-                                                    <input className="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a1a1c] font-bold text-gray-800 dark:text-white placeholder:font-normal placeholder:text-gray-400 text-sm focus:border-primary focus:ring-primary shadow-sm" placeholder="Step Title (e.g. Garnish)" type="text" />
+                                                    <input className="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a1a1c] font-bold text-gray-800 dark:text-white placeholder:font-normal placeholder:text-gray-400 text-sm focus:border-primary focus:ring-primary shadow-sm px-4 py-3" placeholder="Step Title (e.g. Garnish)" type="text" />
                                                 </div>
                                                 <div>
                                                     <label className="sr-only">Step Narration</label>
-                                                    <textarea className="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a1a1c] text-gray-600 dark:text-gray-300 text-sm focus:border-primary focus:ring-primary resize-none placeholder:text-gray-400 shadow-sm" placeholder="Step narration or description..." rows="3"></textarea>
+                                                    <textarea className="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a1a1c] text-gray-600 dark:text-gray-300 text-sm focus:border-primary focus:ring-primary resize-none placeholder:text-gray-400 shadow-sm p-4" placeholder="Step narration or description..." rows="3"></textarea>
                                                 </div>
                                                 <div className="flex justify-end">
                                                     <button className="px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg shadow-sm hover:bg-red-700 transition-colors">Save Step</button>
